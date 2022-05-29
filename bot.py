@@ -122,13 +122,13 @@ async def on_message(message):
     if die_roll:
         s = do_die_roll(die_roll)
         await message.reply(s)
-    elif m.startswith('set'):
+    elif m.startswith('set '):
         _, m = chompf(m, 'set ')
         v, n = chompf(m, ' ')
         if not v.isalpha():
             return
         if n.isdigit():
-            state.set(a, v, int(n))
+            state.set(a, v, n)
             await message.reply(f'set {v} to {n}')
         die_roll = parse_die_roll(n)
         if die_roll:
@@ -139,6 +139,12 @@ async def on_message(message):
         await message.reply(s)
     elif m == 'backup':
         await message.reply(state.backup(a))
+    elif m == 'help':
+        await message.reply('''2d6 -- roll 2d6
+2d6+10 -- roll 2d6+10
+set {var} {number|roll} -- save a roll or number in a variable
+{var} -- print a saved number or roll a saved die
+backup -- print out all your saved variables''')
 
 
 if __name__ == '__main__':
