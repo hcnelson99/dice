@@ -144,7 +144,10 @@ async def on_message(message):
 2d6+10 -- roll 2d6+10
 set {var} {number|roll} -- save a roll or number in a variable
 {var} -- print a saved number or roll a saved die
-backup -- print out all your saved variables''')
+backup -- print out all your saved variables
+
+code at https://github.com/hcnelson99/dice
+''')
 
 
 if __name__ == '__main__':
